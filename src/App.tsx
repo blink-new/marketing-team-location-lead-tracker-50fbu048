@@ -7,6 +7,7 @@ import { VisitCheckins } from '@/components/visits/VisitCheckins'
 import { LeadManagement } from '@/components/leads/LeadManagement'
 import { Analytics } from '@/components/analytics/Analytics'
 import { ActivityFeed } from '@/components/activity/ActivityFeed'
+import { Toaster } from '@/components/ui/toaster'
 import { blink } from '@/blink/client'
 import { TeamMember, Visit, Lead, TeamActivity } from '@/types'
 
@@ -227,7 +228,7 @@ function App() {
       case 'dashboard':
         return <DashboardOverview teamMembers={teamMembers} visits={visits} leads={leads} />
       case 'team':
-        return <TeamLocations teamMembers={teamMembers} />
+        return <TeamLocations teamMembers={teamMembers} onTeamMemberAdded={loadData} />
       case 'visits':
         return <VisitCheckins visits={visits} onVisitAdded={loadData} />
       case 'leads':
@@ -250,6 +251,7 @@ function App() {
           {renderContent()}
         </main>
       </div>
+      <Toaster />
     </div>
   )
 }
